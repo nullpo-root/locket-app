@@ -10,31 +10,36 @@ jobs:
   build-ipa:
     runs-on: macos-14
     steps:
-      - name: 📥 Checkout code
+      - name: "📥 Checkout code"
         uses: actions/checkout@v4
 
-      - name: 🐦 Setup Flutter
+      - name: "🐦 Setup Flutter"
         uses: subosito/flutter-action@v2
         with:
-          flutter-version: '3.22.x'
-          channel: 'stable'
+          flutter-version: "3.22.x"
+          channel: "stable"
           cache: true
 
-      - name: 📦 Install Flutter Dependencies
+      - name: "🏗️ Generate full Flutter iOS scaffold"
+        run: |
+          flutter create . --project-name locket_app --platforms ios,android
+          echo "Scaffold OK!"
+
+      - name: "📦 Install Flutter Dependencies"
         run: flutter pub get
 
-      - name: 🔨 Build iOS Release (Bỏ qua ký số)
+      - name: "🔨 Build iOS Release (no codesign)"
         run: flutter build ios --release --no-codesign
 
-      - name: 📦 Đóng gói file .ipa
+      - name: "📦 Package .ipa file"
         run: |
           cd build/ios/iphoneos
           mkdir -p Payload
           cp -r Runner.app Payload/
           zip -r -q locket_app.ipa Payload
-          echo "✅ Đã tạo thành công file locket_app.ipa!"
+          echo "locket_app.ipa created!"
 
-      - name: 🚀 Upload .ipa lên GitHub Artifacts
+      - name: "🚀 Upload .ipa to GitHub Artifacts"
         uses: actions/upload-artifact@v4
         with:
           name: locket-app-ipa
