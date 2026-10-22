@@ -1,0 +1,47 @@
+name: locket_app
+description: "A cross-platform Locket Widget clone for iOS and Android built with Flutter."
+publish_to: 'none'
+version: 1.0.0+1
+
+environment:
+  sdk: '>=3.0.0 <4.0.0'
+
+dependencies:
+  flutter:
+    sdk: flutter
+  
+  # Camera & Image handling
+  camera: ^0.10.5+9
+  image_picker: ^1.0.7
+  path_provider: ^2.1.2
+  path: ^1.9.0
+  intl: ^0.19.0
+  
+  # Home Screen Widget integration (iOS WidgetKit & Android AppWidget)
+  home_widget: ^0.7.0
+  
+  # Local storage & caching
+  shared_preferences: ^2.2.2
+  uuid: ^4.3.3
+  cached_network_image: ^3.3.1
+  
+  # State management & Icons
+  cupertino_icons: ^1.0.6
+  flutter_staggered_grid_view: ^0.7.0
+
+  # Firebase (Optional: activate in lib/config/app_config.dart)
+  # firebase_core: ^2.27.0
+  # firebase_auth: ^4.17.8
+  # cloud_firestore: ^4.15.8
+  # firebase_storage: ^11.6.9
+  # firebase_messaging: ^14.7.19
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^3.0.0
+
+flutter:
+  uses-material-design: true
+  assets:
+    - assets/images/
